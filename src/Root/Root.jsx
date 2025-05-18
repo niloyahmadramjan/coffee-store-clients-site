@@ -3,6 +3,7 @@ import Home from "../Pages/Home";
 import Routers from "../Routers/Routers";
 import AddCoffee from "../Pages/AddCoffee";
 import CoffeeViewInfo from "../Pages/CoffeeViewInfo";
+import NotFound from "../Pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -10,20 +11,25 @@ const router = createBrowserRouter([
     Component: Routers,
     children: [
       {
-        index: true, Component: Home,
+        index: true,
+        Component: Home,
       },
       {
-        path: '/addCoffee',
-        Component: AddCoffee
+        path: "/addCoffee",
+        Component: AddCoffee,
       },
       {
-        path: '/coffeeViewInfo/:id',
-        loader: ({params})=> fetch(`http://localhost:3000/coffees/${params.id}`),
+        path: "/coffeeViewInfo/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/coffees/${params.id}`),
         Component: CoffeeViewInfo,
-      }
-    ]
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
   },
-  
 ]);
 
 export default router;
