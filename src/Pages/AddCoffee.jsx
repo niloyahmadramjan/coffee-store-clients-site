@@ -1,23 +1,37 @@
 import React from "react";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   const handleAddCoffee = (e) => {
     e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
-  const newCoffee = Object.fromEntries(formData.entries());
+    const form = e.target;
+    const formData = new FormData(form);
+    const newCoffee = Object.fromEntries(formData.entries());
 
-  fetch("http://localhost:3000/coffees",{
-    method: "POST",
-    headers: {
-        "content-type": "application/json"
-    },
-    body: JSON.stringify(newCoffee)
-  })
-  .then(res => res.json())
-  .then(data => console.log("after coffee add: ", data))
-
+    fetch("http://localhost:3000/coffees", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Coffee Added successfully !",
+            text: "You clicked the button!",
+            icon: "success",
+          });
+        } else {
+          Swal.fire({
+            title: "Coffee not add!",
+            text: "You clicked the button!",
+            icon: "fail",
+          });
+        }
+      });
   };
 
   return (
@@ -48,6 +62,7 @@ const AddCoffee = () => {
             <div>
               <label className="label">Name</label>
               <input
+                required
                 type="text"
                 placeholder="Enter coffee name"
                 className="input input-bordered w-full"
@@ -79,6 +94,7 @@ const AddCoffee = () => {
             <div>
               <label className="label">Price</label>
               <input
+                required
                 type="text"
                 placeholder="Enter coffee price"
                 className="input input-bordered w-full"
@@ -113,6 +129,7 @@ const AddCoffee = () => {
           <div>
             <label className="label">Photo</label>
             <input
+              required
               type="text"
               placeholder="Enter photo URL"
               className="input input-bordered w-full"

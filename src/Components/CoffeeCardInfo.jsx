@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router";
 
 const CoffeeCardInfo = ({ coffee }) => {
-  const { name, chef, price, photo } = coffee;
+  const { _id, name, chef, price, photo } = coffee;
   return (
     <div className="bg-[#f4f3f0] rounded-lg flex items-center justify-between p-4">
       <img src={photo} alt="coffee" className="w-28" />
@@ -17,7 +18,10 @@ const CoffeeCardInfo = ({ coffee }) => {
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <button className="btn btn-sm btn-ghost bg-[#D2B48C]">👁</button>
+        <Link to={`/coffeeViewInfo/${_id}`}>
+          {" "}
+          <button className="btn btn-sm btn-ghost bg-[#D2B48C]">👁</button>
+        </Link>
         <button className="btn btn-sm btn-ghost bg-black text-white">✏️</button>
         <button className="btn btn-sm btn-ghost bg-red-500 text-white">
           🗑
