@@ -4,6 +4,7 @@ import Routers from "../Routers/Routers";
 import AddCoffee from "../Pages/AddCoffee";
 import CoffeeViewInfo from "../Pages/CoffeeViewInfo";
 import NotFound from "../Pages/NotFound";
+import CoffeeUpdate from "../Pages/CoffeeUpdate";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,12 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/coffees/${params.id}`),
         Component: CoffeeViewInfo,
+      },
+      {
+        path: "/coffeeUpdate/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/coffees/${params.id}`),
+        Component: CoffeeUpdate,
       },
       {
         path: "*",

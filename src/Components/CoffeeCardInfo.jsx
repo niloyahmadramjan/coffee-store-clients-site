@@ -19,11 +19,14 @@ const CoffeeCardInfo = ({ coffee }) => {
       </div>
       <div className="flex flex-col gap-2">
         <Link to={`/coffeeViewInfo/${_id}`}>
-          {" "}
           <button className="btn btn-sm btn-ghost bg-[#D2B48C]">👁</button>
         </Link>
-        <button className="btn btn-sm btn-ghost bg-black text-white">✏️</button>
-        <button className="btn btn-sm btn-ghost bg-red-500 text-white">
+        <Link to={`/coffeeUpdate/${_id}`}>
+          <button className="btn btn-sm btn-ghost bg-black text-white">
+            ✏️
+          </button>
+        </Link>
+        <button  className="btn btn-sm btn-ghost bg-red-500 text-white">
           🗑
         </button>
       </div>
